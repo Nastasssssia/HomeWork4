@@ -3,6 +3,7 @@ int task = Input("Введите номер задачи:");
 if(task == 25) Task25();
 else if(task == 27) Task27();
 else if(task == 29) Task29();
+else if (task == 1) Task1dop();
 
 
 
@@ -63,6 +64,8 @@ void Task27()
 
 void Task29()
 
+
+
 {
     //  Напишите программу, которая задаёт массив из 8 случайных целых чисел и выводит отсортированный по модулю массив.
     int size = 8;
@@ -105,8 +108,59 @@ void Task29()
     }
 }
             
+void Task1dop()
+{
+    // На вход подаётся натуральное десятичное число. Проверьте, является ли оно палиндромом в двоичной записи.
+    int number = Input("Введите число:");
+    string binaryNumber = ToBinary(number);
+    bool isPalindrome = Palindrome(binaryNumber);
 
         
+        Console.WriteLine($"Двоичная запись числа: {binaryNumber}");
+        Console.WriteLine($"Является ли палиндромом: {isPalindrome}");
+
+
+
+
+    string ToBinary ( int number)
+    {
+        if(number == 0)
+        {
+            return "0";
+        }
+    string binary = string.Empty;
+    while(number > 0)
+    {
+        int temp = number % 2;
+        binary = temp.ToString() + binary;
+        number /= 2;
+    }
+    return binary;
+    }
+
+    bool Palindrome(string input)
+    {
+        int left = 0;
+        int right = input.Length - 1;
+
+        while (left < right)
+        {
+            if (input[left] != input[right])
+            {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+        
+    }
+
+
+}
+
+       
 
 
 
