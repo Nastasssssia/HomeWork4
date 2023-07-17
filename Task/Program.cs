@@ -1,4 +1,15 @@
-﻿int Input(string text)
+﻿
+int task = Input("Введите номер задачи:");
+if(task == 25) Task25();
+else if(task == 27) Task27();
+else if(task == 29) Task29();
+
+
+
+
+
+
+int Input(string text)
 {
     Console.Write(text);
     return Convert.ToInt32(Console.ReadLine());
@@ -54,40 +65,51 @@ void Task29()
 
 {
     //  Напишите программу, которая задаёт массив из 8 случайных целых чисел и выводит отсортированный по модулю массив.
-    
-        int size = 8;
-        Random rnd = new Random();
-        int [] array = new int[size];
-        for(int i = 0; i < size; i++)
+    int size = 8;
+    Random rnd = new Random();
+    int[] array = new int[size];
+    for(int i = 0; i < size; i++)
+    {
+        array[i] = rnd.Next(1,100);
+    }
+    Console.WriteLine("Исходный массив:");
+    PrintArray(array);
+    SelectionSort(array);
+    Console.WriteLine();
+    Console.WriteLine("Отсортированный по модулю массив:");
+    PrintArray(array);
+
+    void PrintArray(int[]array)
+    {
+        int count = array.Length;
+        for(int i = 0; i < count; i++ )
         {
-            array[i] = rnd.Next(1,100);
+            Console.Write($"{array[i]} ");
         }
-        for(int i = 0; i < size; i++)
-        {
-            Console.WriteLine($"{array[i]} ");
-        }
-        for(int i = 0; i < array.Length; i++)
+    }
+
+    void SelectionSort(int []array)
+    {
+        for(int i = 0; i < array.Length; i++ )
         {
             int minPosition = i;
-            for (int g = i+1; g < array.Length; g++)
+            for(int g = i+1; g < array.Length; g++)
             {
-                if(Math.Abs(array[g]) > Math.Abs(array[minPosition])) minPosition = g;
+                if(Math.Abs(array[g]) < Math.Abs(array[minPosition])) minPosition = g;
             }
             int temporary = array[i];
-            array[i]= array[minPosition];
+            array[i] = array[minPosition];
             array[minPosition] = temporary;
-            for(int t = 0; t < size; t++)
-            {
-                Console.WriteLine($"{array[t]} ");
-            
-            }
+
         }
+    }
+}
+            
 
         
-}
 
-Console.Clear();
-Task29();
+
+
 
 
 
